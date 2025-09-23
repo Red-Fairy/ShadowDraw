@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<style>
+  .smallcaps {
+    font-variant: small-caps;
+  }
+</style>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+  <!-- Primary Meta Tags -->
+  <!-- TODO: Replace with your paper title and author names -->
+  <meta name="title" content="ShadowDraw: From Any Object to Shadow-Drawing Compositional Art">
+  <!-- TODO: Write a compelling 150-160 character description of your research -->
+  <meta name="description" content="We introduce ShadowDraw, a framework that transforms ordinary 3D objects into shadow-drawing compositional art. By jointly predicting scene parameters---including object pose and lighting---and an incomplete line drawing, our framework ensures that the cast shadow seamlessly completes the drawing into a recognizable image.">
+  <!-- TODO: Add 5-10 relevant keywords for your research area -->
+  <meta name="keywords" content="shadow-drawing, compositional art, 3D object, scene understanding, generative modeling">
+  <!-- TODO: List all authors -->
+  <meta name="author" content="">
+  <meta name="robots" content="index, follow">
+  <meta name="language" content="English">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="article">
+  <!-- TODO: Replace with your institution or lab name -->
+  <meta property="og:site_name" content="ShadowDraw">
+  <!-- TODO: Same as paper title above -->
+  <meta property="og:title" content="ShadowDraw: From Any Object to Shadow-Drawing Compositional Art">
+  <!-- TODO: Same as description above -->
+  <meta property="og:description"
+    content="We introduce ShadowDraw, a framework that transforms ordinary 3D objects into shadow-drawing compositional art. By jointly predicting scene parameters---including object pose and lighting---and an incomplete line drawing, our framework ensures that the cast shadow seamlessly completes the drawing into a recognizable image.">
+  <!-- TODO: Replace with your actual website URL -->
+  <meta property="og:url" content="https://red-fairy.github.io/ShadowDraw/">
+  <!-- TODO: Create a 1200x630px preview image and update path -->
+  <meta property="og:image" content="https://red-fairy.github.io/ShadowDraw/static/images/social_preview.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt"
+    content="ShadowDraw: From Any Object to Shadow-Drawing Compositional Art - Research Preview">
+  <meta property="article:published_time" content="2024-01-01T00:00:00.000Z">
+  <meta property="article:author" content="FIRST_AUTHOR_NAME">
+  <meta property="article:section" content="Research">
+  <meta property="article:tag" content="KEYWORD1">
+  <meta property="article:tag" content="KEYWORD2">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <!-- TODO: Replace with your lab/institution Twitter handle -->
+  <meta name="twitter:site" content="@red_fairy">
+  <!-- TODO: Replace with first author's Twitter handle -->
+  <meta name="twitter:creator" content="@AUTHOR_TWITTER_HANDLE">
+  <!-- TODO: Same as paper title above -->
+  <meta name="twitter:title" content="ShadowDraw: From Any Object to Shadow-Drawing Compositional Art">
+  <!-- TODO: Same as description above -->
+  <meta name="twitter:description"
+    content="We introduce ShadowDraw, a framework that transforms ordinary 3D objects into shadow-drawing compositional art. By jointly predicting scene parameters---including object pose and lighting---and an incomplete line drawing, our framework ensures that the cast shadow seamlessly completes the drawing into a recognizable image.">
+  <!-- TODO: Same as social preview image above -->
+  <meta name="twitter:image" content="https://red-fairy.github.io/ShadowDraw/static/images/social_preview.png">
+  <meta name="twitter:image:alt" content="PAPER_TITLE - Research Preview">
+
+  <!-- Academic/Research Specific -->
+  <meta name="citation_title" content="ShadowDraw: From Any Object to Shadow-Drawing Compositional Art">
+  <meta name="citation_author" content="FIRST_AUTHOR_LAST, FIRST_AUTHOR_FIRST">
+  <meta name="citation_author" content="SECOND_AUTHOR_LAST, SECOND_AUTHOR_FIRST">
+  <meta name="citation_author" content="THIRD_AUTHOR_LAST, THIRD_AUTHOR_FIRST">
+  <meta name="citation_publication_date" content="2025">
+  <meta name="citation_conference_title" content="CONFERENCE_NAME">
+  <meta name="citation_pdf_url" content="https://red-fairy.github.io/ShadowDraw/static/pdfs/paper.pdf">
+
+  <!-- Additional SEO -->
+  <meta name="theme-color" content="#2563eb">
+  <meta name="msapplication-TileColor" content="#2563eb">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+
+  <!-- Preconnect for performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://ajax.googleapis.com">
+  <link rel="preconnect" href="https://documentcloud.adobe.com">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+
+
+  <!-- TODO: Replace with your paper title and authors -->
+  <title>ShadowDraw: From Any Object to Shadow-Drawing Compositional Art</title>
+
+  <!-- Favicon and App Icons -->
+  <link rel="icon" type="image/x-icon" href="static/images/light.svg">
+  <link rel="apple-touch-icon" href="static/images/light.svg">
+
+  <!-- Critical CSS - Load synchronously -->
+  <link rel="stylesheet" href="static/css/bulma.min.css">
+  <link rel="stylesheet" href="static/css/index.css">
+
+  <!-- Non-critical CSS - Load asynchronously -->
+  <link rel="preload" href="static/css/bulma-carousel.min.css" as="style"
+    onload="this.onload=null;this.rel='stylesheet'">
+  <link rel="preload" href="static/css/bulma-slider.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <link rel="preload" href="static/css/fontawesome.all.min.css" as="style"
+    onload="this.onload=null;this.rel='stylesheet'">
+  <link rel="preload" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css" as="style"
+    onload="this.onload=null;this.rel='stylesheet'">
+
+  <!-- Fallback for browsers that don't support preload -->
+  <noscript>
+    <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
+    <link rel="stylesheet" href="static/css/bulma-slider.min.css">
+    <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  </noscript>
+
+  <!-- Fonts - Optimized loading -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Defer non-critical JavaScript -->
+  <script defer src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
+  <script defer src="static/js/fontawesome.all.min.js"></script>
+  <script defer src="static/js/bulma-carousel.min.js"></script>
+  <script defer src="static/js/bulma-slider.min.js"></script>
+  <script defer src="static/js/index.js"></script>
+
+  <!-- Structured Data for Academic Papers -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ScholarlyArticle",
+    "headline": "PAPER_TITLE",
+    "description": "BRIEF_DESCRIPTION_OF_YOUR_RESEARCH_CONTRIBUTION_AND_FINDINGS",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "FIRST_AUTHOR_NAME",
+        "affiliation": {
+          "@type": "Organization",
+          "name": "INSTITUTION_NAME"
+        }
+      },
+      {
+        "@type": "Person",
+        "name": "SECOND_AUTHOR_NAME",
+        "affiliation": {
+          "@type": "Organization",
+          "name": "INSTITUTION_NAME"
+        }
+      }
+    ],
+    "datePublished": "2024-01-01",
+    "publisher": {
+      "@type": "Organization",
+      "name": "CONFERENCE_OR_JOURNAL_NAME"
+    },
+    "url": "https://YOUR_DOMAIN.com/YOUR_PROJECT_PAGE",
+    "image": "https://YOUR_DOMAIN.com/static/images/social_preview.png",
+    "keywords": ["KEYWORD1", "KEYWORD2", "KEYWORD3", "machine learning", "computer vision"],
+    "abstract": "FULL_ABSTRACT_TEXT_HERE",
+    "citation": "BIBTEX_CITATION_HERE",
+    "isAccessibleForFree": true,
+    "license": "https://creativecommons.org/licenses/by/4.0/",
+    "mainEntity": {
+      "@type": "WebPage",
+      "@id": "https://YOUR_DOMAIN.com/YOUR_PROJECT_PAGE"
+    },
+    "about": [
+      {
+        "@type": "Thing",
+        "name": "RESEARCH_AREA_1"
+      },
+      {
+        "@type": "Thing", 
+        "name": "RESEARCH_AREA_2"
+      }
+    ]
+  }
+  </script>
+
+  <!-- Website/Organization Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "INSTITUTION_OR_LAB_NAME",
+    "url": "https://YOUR_INSTITUTION_WEBSITE.com",
+    "logo": "https://YOUR_DOMAIN.com/static/images/favicon.ico",
+    "sameAs": [
+      "https://twitter.com/YOUR_TWITTER_HANDLE",
+      "https://github.com/YOUR_GITHUB_USERNAME"
+    ]
+  }
+  </script>
+</head>
+
+<body>
+
+
+  <!-- Scroll to Top Button -->
+  <button class="scroll-to-top" onclick="scrollToTop()" title="Scroll to top" aria-label="Scroll to top">
+    <i class="fas fa-chevron-up"></i>
+  </button>
+
+  <!-- More Works Dropdown -->
+  <!-- <div class="more-works-container">
+    <button class="more-works-btn" onclick="toggleMoreWorks()" title="View More Works from Our Lab">
+      <i class="fas fa-flask"></i>
+      More Works
+      <i class="fas fa-chevron-down dropdown-arrow"></i>
+    </button>
+    <div class="more-works-dropdown" id="moreWorksDropdown">
+      <div class="dropdown-header">
+        <h4>More Works from Our Lab</h4>
+        <button class="close-btn" onclick="toggleMoreWorks()">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <div class="works-list">
+        <a href="https://arxiv.org/abs/PAPER_ID_1" class="work-item" target="_blank">
+          <div class="work-info">
+            <h5>Paper Title 1</h5>
+            <p>Brief description of the work and its main contribution.</p>
+            <span class="work-venue">Conference/Journal 2024</span>
+          </div>
+          <i class="fas fa-external-link-alt"></i>
+        </a>
+        <a href="https://arxiv.org/abs/PAPER_ID_2" class="work-item" target="_blank">
+          <div class="work-info">
+            <h5>Paper Title 2</h5>
+            <p>Brief description of the work and its main contribution.</p>
+            <span class="work-venue">Conference/Journal 2023</span>
+          </div>
+          <i class="fas fa-external-link-alt"></i>
+        </a>
+        <a href="https://arxiv.org/abs/PAPER_ID_3" class="work-item" target="_blank">
+          <div class="work-info">
+            <h5>Paper Title 3</h5>
+            <p>Brief description of the work and its main contribution.</p>
+            <span class="work-venue">Conference/Journal 2023</span>
+          </div>
+          <i class="fas fa-external-link-alt"></i>
+        </a>
+      </div>
+    </div>
+  </div> -->
+
+  <main id="main-content">
+    <section class="hero">
+      <div class="hero-body">
+        <div class="container is-max-desktop">
+          <div class="columns is-centered">
+            <div class="column has-text-centered">
+              <!-- TODO: Replace with your paper title -->
+              <h1 class="title is-1 publication-title">ShadowDraw: From Any Object to Shadow-Drawing Compositional Art
+              </h1>
+              <!-- <div class="is-size-5 publication-authors">
+                <span class="author-block">
+                  <a href="FIRST AUTHOR PERSONAL LINK" target="_blank">First Author</a><sup>*</sup>,</span>
+                <span class="author-block">
+                  <a href="SECOND AUTHOR PERSONAL LINK" target="_blank">Second Author</a><sup>*</sup>,</span>
+                <span class="author-block">
+                  <a href="THIRD AUTHOR PERSONAL LINK" target="_blank">Third Author</a>
+                </span>
+              </div> -->
+
+              <!-- <div class="is-size-5 publication-authors">
+              <span class="author-block"></span>
+              </div> -->
+
+              <!-- <div class="column has-text-centered">
+                <div class="publication-links">
+                  <span class="link-block">
+                    <a href="https://arxiv.org/pdf/<ARXIV PAPER ID>.pdf" target="_blank"
+                      class="external-link button is-normal is-rounded is-dark">
+                      <span class="icon">
+                        <i class="fas fa-file-pdf"></i>
+                      </span>
+                      <span>Paper</span>
+                    </a>
+                  </span>
+
+                  <span class="link-block">
+                    <a href="static/pdfs/supplementary_material.pdf" target="_blank"
+                      class="external-link button is-normal is-rounded is-dark">
+                      <span class="icon">
+                        <i class="fas fa-file-pdf"></i>
+                      </span>
+                      <span>Supplementary</span>
+                    </a>
+                  </span>
+                  <span class="link-block">
+                    <a href="https://github.com/YOUR REPO HERE" target="_blank"
+                      class="external-link button is-normal is-rounded is-dark">
+                      <span class="icon">
+                        <i class="fab fa-github"></i>
+                      </span>
+                      <span>Code</span>
+                    </a>
+                  </span>
+
+                  <span class="link-block">
+                    <a href="https://arxiv.org/abs/<ARXIV PAPER ID>" target="_blank"
+                      class="external-link button is-normal is-rounded is-dark">
+                      <span class="icon">
+                        <i class="ai ai-arxiv"></i>
+                      </span>
+                      <span>arXiv</span>
+                    </a>
+                  </span>
+                </div>
+              </div> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- Teaser video-->
+    <section class="hero teaser">
+      <div class="container is-max-desktop">
+        <div class="hero-body">
+          <video poster="" id="tree" autoplay controls loop height="100%" preload="metadata">
+            <source src="static/videos/demo.mp4" type="video/mp4">
+          </video>
+          <h2 class="subtitle has-text-centered">
+            <strong style="font-size: 1.4rem;"><i class="fa-solid fa-lightbulb" style="color: gold; font-size: 24px;"></i> Demonstration of our framework in action <i class="fa-solid fa-lightbulb" style="color: gold; font-size: 24px;"></i></strong>
+            <br>
+            Given an arbitrary 3D object, our method jointly predicts scene parameters, including object pose and
+            lighting, and an incomplete line drawing, such that the cast shadow seamlessly completes the drawing into a
+            coherent image. 
+            <br>
+            We begin by sketching the generated line drawing, then place the physical object, and finally switch on the
+            light. The cast shadow seamlessly completes the drawing, revealing the intended composition and showcasing
+            the creative interplay between geometry, illumination, and art.
+          </h2>
+        </div>
+      </div>
+    </section>
+    <!-- End teaser video -->
+
+    <!-- Paper abstract -->
+    <section class="section hero is-light">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered has-text-centered">
+          <div class="column is-four-fifths">
+            <h2 class="title is-3">Abstract</h2>
+            <div class="content has-text-justified">
+              <p>
+                We introduce <span class="smallcaps">ShadowDraw</span>, a framework that transforms ordinary 3D objects
+                into shadow-drawing
+                compositional art. By jointly predicting scene parameters---including object pose and lighting---and an
+                incomplete line drawing, our framework ensures that the cast shadow seamlessly completes the drawing
+                into a recognizable image. To achieve this, we optimize scene configurations to reveal semantically
+                meaningful shadows, employ the shadow stroke representation to guide line drawing generation, and apply
+                automatic filtering to enforce quality, alignment, and coherence. Experiments demonstrate that
+                <span class="smallcaps">ShadowDraw</span> produces compelling results across diverse inputs, from
+                real-world scans and curated
+                datasets to generative assets, and naturally extends to multi-object scenes, animated settings, and
+                physical deployments. Our work offers a practical pipeline for creating shadow-drawing art and broadens
+                the design space of computational visual art, bridging the gap between algorithmic generation and
+                artistic storytelling.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- End paper abstract -->
+
+    <section class="hero is-small">
+      <div class="hero-body">
+        <div class="container">
+          <h2 class="title is-3">Framework</h2>
+          <div style="width: 95%; margin: auto;">
+            <div class="content has-text-justified">
+              <div class="item">
+                <img src="static/images/framework.png" alt="" />
+              </div>
+              <br>
+              <div class="columns">
+                <p>
+                  <strong>Framework overview.</strong> Given a 3D object, we first optimize a set of scene parameters
+                  that specify the object pose and light configuration. The resulting shadows are used to generate
+                  prompts that condition a flow-based line drawing model joinly with the shadow strokes. Then, the
+                  generated drawings are filtered with a VQA-based coherence check and ranked by semantic and quality
+                  metrics. The final output is an incomplete line drawing together with scene parameters that, when
+                  rendered, form a coherent shadow-drawing composition.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+    </section>
+
+
+    <section class="hero is-small is-light">
+      <div class="hero-body">
+        <div class="container">
+          <h2 class="title is-3">Gallery</h2>
+          <div style="width: 95%; margin: auto;">
+            <p>
+              We showcase a collection of shadow-drawing compositions generated by our framework. 
+              Each composition is a result of a different scene configuration, including different object poses and light directions.
+              The input objects are shown on the bottom-right corner of each image.
+            </p>
+          </div>
+          <div style="width: 95%; margin: auto;">
+            <div class="content has-text-justified">
+              <div class="item">
+                <img src="static/images/gallery.png" alt="" />
+              </div>
+            </div>
+          </div>
+        </div>
+    </section>
+
+    <section class="hero is-small">
+      <div class="hero-body">
+        <div class="container">
+          <h2 class="title is-3">Real-world deployment</h2>
+          <div style="width: 95%; margin: auto;">
+            <p>
+              Because our method requires only a 3D object and a single spotlight, it can be easily reproduced in
+              physical setups without specialized equipment. For instance, everyday household items combined with a
+              phone flashlight suffice to create compelling shadow-drawing compositions.
+            </p>
+          </div>
+          <div style="width: 80%; margin: auto;">
+            <div id="results-carousel" class="carousel results-carousel">
+              <div class="item video-wrapper">
+                <video id="video1" autoplay controls muted loop loading="lazy" preload="metadata">
+                  <source src="static/videos/real-world/I_compressed.mp4" type="video/mp4">
+                </video>
+              </div>
+              <div class="item video-wrapper">
+                <video id="video1" autoplay controls muted loop loading="lazy" preload="metadata">
+                  <source src="static/videos/real-world/C_compressed.mp4" type="video/mp4">
+                </video>
+              </div>
+              <div class="item video-wrapper">
+                <video id="video1" autoplay controls muted loop loading="lazy" preload="metadata">
+                  <source src="static/videos/real-world/L_compressed.mp4" type="video/mp4">
+                </video>
+              </div>
+              <div class="item video-wrapper">
+                <video id="video1" autoplay controls muted loop loading="lazy" preload="metadata">
+                  <source src="static/videos/real-world/R_compressed.mp4" type="video/mp4">
+                </video>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="hero is-small is-light">
+      <div class="hero-body">
+        <div class="container">
+          <h2 class="title is-3">One object, diverse results</h2>
+          <div style="width: 95%; margin: auto;">
+            <p>Our framework by design generates multiple shadow-drawing compositions from the same real-world object.
+              By
+              varying the light direction, the object pose, and the underlying line drawing, we obtain a collection of
+              artworks that highlight different aspects of the same object. This demonstrates how a single object can
+              serve as the basis for a wide range of artistic expressions.
+            </p>
+          </div>
+          <div style="width: 60%; margin: auto;">
+            <div id="results-carousel" class="carousel results-carousel">
+              <div class="item video-wrapper">
+                <video id="video1" autoplay controls muted loop loading="lazy" preload="metadata">
+                  <source src="static/videos/one-object/gallery_videos/035_power_drill/animation.mp4" type="video/mp4">
+                </video>
+              </div>
+              <div class="item video-wrapper">
+                <video id="video1" autoplay controls muted loop loading="lazy" preload="metadata">
+                  <source src="static/videos/one-object/gallery_videos/043_phillips_screwdriver/animation.mp4"
+                    type="video/mp4">
+                </video>
+              </div>
+              <div class="item video-wrapper">
+                <video id="video1" autoplay controls muted loop loading="lazy" preload="metadata">
+                  <source src="static/videos/one-object/gallery_videos/063-a_marbles/animation.mp4" type="video/mp4">
+                </video>
+              </div>
+              <div class="item video-wrapper">
+                <video id="video1" autoplay controls muted loop loading="lazy" preload="metadata">
+                  <source src="static/videos/one-object/gallery_videos/generated-3D-assets_mesh_131/animation.mp4"
+                    type="video/mp4">
+                </video>
+              </div>
+              <div class="item video-wrapper">
+                <video id="video1" autoplay controls muted loop loading="lazy" preload="metadata">
+                  <source src="static/videos/one-object/gallery_videos/generated-3D-assets_wmesh_1/animation.mp4"
+                    type="video/mp4">
+                </video>
+              </div>
+              <div class="item video-wrapper">
+                <video id="video1" autoplay controls muted loop loading="lazy" preload="metadata">
+                  <source src="static/videos/one-object/gallery_videos/R/animation.mp4" type="video/mp4">
+                </video>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="hero is-small">
+      <div class="hero-body">
+        <div class="container">
+          <h2 class="title is-3">Multi-object compositions</h2>
+          <div style="width: 95%; margin: auto;">
+            <p>Our framework naturally extends to scenes involving multiple objects. For each candidate configuration,
+              we
+              independently sample self-rotation angles, arrange the objects vertically, and release them in Blender's
+              physics simulation to obtain a stable stacked layout. Once equilibrium is reached, the configuration is
+              treated as a single composite object, allowing the rest of the pipeline to be applied directly. This
+              enables more elaborate visual narratives where different objects contribute complementary shadow
+              structures.
+            </p>
+          </div>
+          <div style="width: 60%; margin: auto;">
+            <div id="results-carousel" class="carousel results-carousel">
+              <div class="item video-wrapper">
+                <video id="video1" autoplay controls muted loop loading="lazy" preload="metadata">
+                  <source src="static/videos/multi-object/bowl_A_pot_scrubber/animation.mp4" type="video/mp4">
+                </video>
+              </div>
+              <div class="item video-wrapper">
+                <video id="video2" autoplay controls muted loop loading="lazy" preload="metadata">
+                  <source src="static/videos/multi-object/A_mustard/animation.mp4" type="video/mp4">
+                </video>
+              </div>
+              <div class="item video-wrapper">
+                <video id="video3" autoplay controls muted loop loading="lazy" preload="metadata">
+                  <source src="static/videos/multi-object/I_block/animation.mp4" type="video/mp4">
+                </video>
+              </div>
+              <div class="item video-wrapper">
+                <video id="video4" autoplay controls muted loop loading="lazy" preload="metadata">
+                  <source src="static/videos/multi-object/bowl_A_scrubber/animation.mp4" type="video/mp4">
+                </video>
+              </div>
+              <div class="item video-wrapper">
+                <video id="video5" autoplay controls muted loop loading="lazy" preload="metadata">
+                  <source src="static/videos/multi-object/bowl_A_corn/animation.mp4" type="video/mp4">
+                </video>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <section class="hero is-small is-light">
+      <div class="hero-body">
+        <div class="container">
+          <h2 class="title is-3">Animated objects</h2>
+          <div style="width: 95%; margin: auto;">
+            <p>Our framework also supports animated objects without additional training. For each configuration, we
+              render five key frames of the animation and overlay their shadow strokes into a single image, using
+              distinct colors to denote different frames. This composite is then fed to the VLM to generate the
+              corresponding prompt. As in the static-object setting, we apply a binary mask to restrict stroke
+              placement, defined as the intersection of all shadow regions and their neighborhoods, to avoid strokes in
+              dynamically changing areas.
+            </p>
+          </div>
+          <div style="width: 60%; margin: auto;">
+            <div id="results-carousel" class="carousel results-carousel">
+              <div class="item video-wrapper">
+                <video id="video1" autoplay controls muted loop loading="lazy" preload="metadata">
+                  <source src="static/videos/animated/6.mp4" type="video/mp4">
+                </video>
+              </div>
+              <div class="item video-wrapper">
+                <video id="video2" autoplay controls muted loop loading="lazy" preload="metadata">
+                  <source src="static/videos/animated/7.mp4" type="video/mp4">
+                </video>
+              </div>
+              <div class="item video-wrapper">
+                <video id="video3" autoplay controls muted loop loading="lazy" preload="metadata">
+                  <source src="static/videos/animated/3.mp4" type="video/mp4">
+                </video>
+              </div>
+              <div class="item video-wrapper">
+                <video id="video4" autoplay controls muted loop loading="lazy" preload="metadata">
+                  <source src="static/videos/animated/4.mp4" type="video/mp4">
+                </video>
+              </div>
+              <div class="item video-wrapper">
+                <video id="video5" autoplay controls muted loop loading="lazy" preload="metadata">
+                  <source src="static/videos/animated/5.mp4" type="video/mp4">
+                </video>
+              </div>
+              <div class="item video-wrapper">
+                <video id="video6" autoplay controls muted loop loading="lazy" preload="metadata">
+                  <source src="static/videos/animated/1.mp4" type="video/mp4">
+                </video>
+              </div>
+              <div class="item video-wrapper">
+                <video id="video7" autoplay controls muted loop loading="lazy" preload="metadata">
+                  <source src="static/videos/animated/2.mp4" type="video/mp4">
+                </video>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- Paper poster -->
+    <!-- <section class="hero is-small is-light">
+      <div class="hero-body">
+        <div class="container">
+          <h2 class="title">Poster</h2>
+          <iframe src="static/pdfs/sample.pdf" width="100%" height="550">
+          </iframe>
+
+        </div>
+      </div>
+    </section> -->
+    <!--End paper poster -->
+
+
+
+    <!--BibTex citation -->
+    <!-- <section class="section" id="BibTeX">
+      <div class="container is-max-desktop content">
+        <div class="bibtex-header">
+          <h2 class="title">BibTeX</h2>
+          <button class="copy-bibtex-btn" onclick="copyBibTeX()" title="Copy BibTeX to clipboard">
+            <i class="fas fa-copy"></i>
+            <span class="copy-text">Copy</span>
+          </button>
+        </div>
+        <pre id="bibtex-code"><code>@article{YourPaperKey2024,
+  title={Your Paper Title Here},
+  author={First Author and Second Author and Third Author},
+  journal={Conference/Journal Name},
+  year={2024},
+  url={https://your-domain.com/your-project-page}
+}</code></pre>
+      </div>
+    </section> -->
+    <!--End BibTex citation -->
+
+
+    <footer class="footer">
+      <div class="container">
+        <div class="columns is-centered">
+          <div class="column is-8">
+            <div class="content">
+
+              <p>
+                This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template"
+                  target="_blank">Academic Project Page Template</a> which was adopted from the <a
+                  href="https://nerfies.github.io" target="_blank">Nerfies</a> project page.
+                You are free to borrow the source code of this website, we just ask that you link back to this page in
+                the footer. <br> This website is licensed under a <a rel="license"
+                  href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative
+                  Commons Attribution-ShareAlike 4.0 International License</a>.
+              </p>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Statcounter tracking code -->
+
+    <!-- You can add a tracker to track page visits by creating an account at statcounter.com -->
+
+    <!-- End of Statcounter Code -->
+
+</body>
+
+</html>
