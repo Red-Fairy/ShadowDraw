@@ -16,9 +16,11 @@
   <!-- TODO: Replace with your paper title and author names -->
   <meta name="title" content="ShadowDraw: From Any Object to Shadow-Drawing Compositional Art">
   <!-- TODO: Write a compelling 150-160 character description of your research -->
-  <meta name="description" content="We introduce ShadowDraw, a framework that transforms ordinary 3D objects into shadow-drawing compositional art. By jointly predicting scene parameters---including object pose and lighting---and an incomplete line drawing, our framework ensures that the cast shadow seamlessly completes the drawing into a recognizable image.">
+  <meta name="description"
+    content="We introduce ShadowDraw, a framework that transforms ordinary 3D objects into shadow-drawing compositional art. By jointly predicting scene parameters---including object pose and lighting---and an incomplete line drawing, our framework ensures that the cast shadow seamlessly completes the drawing into a recognizable image.">
   <!-- TODO: Add 5-10 relevant keywords for your research area -->
-  <meta name="keywords" content="shadow-drawing, compositional art, 3D object, scene understanding, generative modeling">
+  <meta name="keywords"
+    content="shadow-drawing, compositional art, 3D object, scene understanding, generative modeling">
   <!-- TODO: List all authors -->
   <meta name="author" content="">
   <meta name="robots" content="index, follow">
@@ -325,11 +327,13 @@
             <source src="static/videos/demo.mp4" type="video/mp4">
           </video>
           <h2 class="subtitle has-text-centered">
-            <strong style="font-size: 1.4rem;"><i class="fa-solid fa-lightbulb" style="color: gold; font-size: 24px;"></i> Demonstration of our framework in action <i class="fa-solid fa-lightbulb" style="color: gold; font-size: 24px;"></i></strong>
+            <strong style="font-size: 1.4rem;"><i class="fa-solid fa-lightbulb"
+                style="color: gold; font-size: 24px;"></i> Demonstration of our framework in action <i
+                class="fa-solid fa-lightbulb" style="color: gold; font-size: 24px;"></i></strong>
             <br>
             Given an arbitrary 3D object, our method jointly predicts scene parameters, including object pose and
             lighting, and an incomplete line drawing, such that the cast shadow seamlessly completes the drawing into a
-            coherent image. 
+            coherent image.
             <br>
             We begin by sketching the generated line drawing, then place the physical object, and finally switch on the
             light. The cast shadow seamlessly completes the drawing, revealing the intended composition and showcasing
@@ -348,18 +352,16 @@
             <h2 class="title is-3">Abstract</h2>
             <div class="content has-text-justified">
               <p>
-                We introduce <span class="smallcaps">ShadowDraw</span>, a framework that transforms ordinary 3D objects
-                into shadow-drawing
-                compositional art. By jointly predicting scene parameters---including object pose and lighting---and an
-                incomplete line drawing, our framework ensures that the cast shadow seamlessly completes the drawing
-                into a recognizable image. To achieve this, we optimize scene configurations to reveal semantically
-                meaningful shadows, employ the shadow stroke representation to guide line drawing generation, and apply
-                automatic filtering to enforce quality, alignment, and coherence. Experiments demonstrate that
-                <span class="smallcaps">ShadowDraw</span> produces compelling results across diverse inputs, from
-                real-world scans and curated
-                datasets to generative assets, and naturally extends to multi-object scenes, animated settings, and
-                physical deployments. Our work offers a practical pipeline for creating shadow-drawing art and broadens
-                the design space of computational visual art, bridging the gap between algorithmic generation and
+                We introduce <span class="smallcaps">ShadowDraw</span>, a framework that transforms ordinary 3D objects into shadow-drawing
+                compositional art. By jointly predicting scene parameters---including object pose and lighting, and an
+                incomplete line drawing---our framework ensures that the resulting cast shadow seamlessly completes the
+                drawing into a recognizable image. To this end, we optimize scene configurations to reveal semantically
+                meaningful shadows, employ shadow strokes to guide line drawing generation, and adopt automatic
+                filtering to enforce shadow-drawing coherence and visual quality. Experiments demonstrate that
+                <span class="smallcaps">ShadowDraw</span> produces compelling results across diverse inputs, ranging from real-world scans and
+                curated datasets to generative assets, and naturally extends to multi-object scenes, animated settings,
+                and physical deployments. Our work provides a practical pipeline for creating shadow-drawing art and
+                broadens the design space of computational visual art, bridging the gap between algorithmic design and
                 artistic storytelling.
               </p>
             </div>
@@ -401,8 +403,9 @@
           <h2 class="title is-3">Gallery</h2>
           <div style="width: 95%; margin: auto;">
             <p>
-              We showcase a collection of shadow-drawing compositions generated by our framework. 
-              Each composition is a result of a different scene configuration, including different object poses and light directions.
+              We showcase a collection of shadow-drawing compositions generated by our framework.
+              Each composition is a result of a different scene configuration, including different object poses and
+              light directions.
             </p>
           </div>
           <br>
