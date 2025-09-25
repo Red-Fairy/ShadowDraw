@@ -356,7 +356,7 @@
                 into shadow-drawing compositional art. Given a 3D object, our system predicts scene
                 parameters---including object pose and lighting---together with a partial line drawing, such that the
                 cast shadow completes the drawing into a recognizable image. To this end, we optimize scene
-                configurations to reveal meaningful shadows, employ <span class="smallcaps">shadow strokes</span> to
+                configurations to reveal meaningful shadows, employ shadow strokes to
                 guide line drawing generation, and adopt automatic evaluation to enforce shadow-drawing coherence and
                 visual quality. Experiments show that <span class="smallcaps">ShadowDraw</span> produces compelling
                 results across diverse inputs, from real-world scans and curated datasets to generative assets, and
@@ -383,12 +383,12 @@
               <br>
               <div class="columns">
                 <p>
-                  <strong>Framework overview.</strong> Given a 3D object, we first optimize a set of scene parameters
-                  that specify the object pose and light configuration. The resulting shadows are used to generate
-                  prompts that condition a flow-based line drawing model joinly with the shadow strokes. Then, the
-                  generated drawings are filtered with a VQA-based coherence check and ranked by semantic and quality
-                  metrics. The final output is an incomplete line drawing together with scene parameters that, when
-                  rendered, form a coherent shadow-drawing composition.
+                  <strong>Framework overview.</strong> Given a 3D object, we first optimize scene parameters specifying
+                  the object pose and light configuration. From the rendered shadows, we derive text prompts with VLM
+                  and extract \shadowstrokes, which together condition the line drawing generator. The generated
+                  drawings are then filtered using a VQA-based coherence check and ranked by semantic and quality
+                  metrics. The final output is a partial line drawing along with scene parameters that, when rendered,
+                  form a coherent shadow-drawing composition.
                 </p>
               </div>
             </div>
@@ -564,12 +564,11 @@
         <div class="container">
           <h2 class="title is-3">Animated objects</h2>
           <div style="width: 95%; margin: auto;">
-            <p>Our framework also supports animated objects without additional training. For each configuration, we
-              render five key frames of the animation and overlay their shadow strokes into a single image, using
-              distinct colors to denote different frames. This composite is then fed to the VLM to generate the
-              corresponding prompt. As in the static-object setting, we apply a binary mask to restrict stroke
-              placement, defined as the intersection of all shadow regions and their neighborhoods, to avoid strokes in
-              dynamically changing areas.
+            <p>Our framework also supports animated objects without extra training. For each configuration, we render
+              five key frames and overlay their shadow strokes into a single image, using distinct colors to denote
+              frames. This composite is then fed to the VLM to generate the corresponding prompt. As in the
+              static-object setting, we apply a binary mask to restrict stroke placement, defined as the intersection of
+              all shadow regions and their neighborhoods, to avoid strokes in dynamically changing areas.
             </p>
           </div>
           <div style="width: 60%; margin: auto;">
