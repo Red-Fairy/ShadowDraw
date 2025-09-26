@@ -194,6 +194,29 @@
     ]
   }
   </script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Initialize all carousels on the page
+      const carousels = bulmaCarousel.attach('.results-carousel', {
+        autoplay: false,  // stop built-in auto-advance
+        loop: true        // optional: cycle back to first video
+      });
+    
+      // For each carousel instance
+      carousels.forEach(carousel => {
+        // Find all videos inside this carousel's container
+        const videos = carousel.element.querySelectorAll('video');
+    
+        videos.forEach(video => {
+          video.addEventListener('ended', () => {
+            // Go to next slide in THIS carousel only
+            carousel.next();
+          });
+        });
+      });
+    });
+  </script>
 </head>
 
 <body>
@@ -323,13 +346,23 @@
     <section class="hero teaser">
       <div class="container is-max-desktop">
         <div class="hero-body">
-          <video poster="" id="tree" autoplay controls loop height="100%" preload="metadata">
+          <video 
+            poster="" 
+            id="tree" 
+            autoplay 
+            muted 
+            controls 
+            loop 
+            height="100%" 
+            preload="metadata">
             <source src="static/videos/demo.mp4" type="video/mp4">
           </video>
           <h2 class="subtitle has-text-centered">
-            <strong style="font-size: 1.4rem;"><i class="fa-solid fa-lightbulb"
-                style="color: gold; font-size: 24px;"></i> Demonstration of our framework in action <i
-                class="fa-solid fa-lightbulb" style="color: gold; font-size: 24px;"></i></strong>
+            <strong style="font-size: 1.4rem;">
+              <i class="fa-solid fa-lightbulb" style="color: gold; font-size: 24px;"></i>
+              Demonstration of our framework in action 
+              <i class="fa-solid fa-lightbulb" style="color: gold; font-size: 24px;"></i>
+            </strong>
             <br>
             Given an arbitrary 3D object, our method jointly predicts scene parameters, including object pose and
             lighting, and an incomplete line drawing, such that the cast shadow seamlessly completes the drawing into a
@@ -431,24 +464,24 @@
             </p>
           </div>
           <div style="width: 80%; margin: auto;">
-            <div id="results-carousel" class="carousel results-carousel">
+            <div class="carousel results-carousel" class="carousel results-carousel">
               <div class="item video-wrapper">
-                <video id="video1" autoplay controls muted loop loading="lazy" preload="metadata">
+                <video autoplay controls muted loading="lazy" preload="metadata">
                   <source src="static/videos/real-world/I_compressed.mp4" type="video/mp4">
                 </video>
               </div>
               <div class="item video-wrapper">
-                <video id="video1" autoplay controls muted loop loading="lazy" preload="metadata">
+                <video autoplay controls muted loading="lazy" preload="metadata">
                   <source src="static/videos/real-world/C_compressed.mp4" type="video/mp4">
                 </video>
               </div>
               <div class="item video-wrapper">
-                <video id="video1" autoplay controls muted loop loading="lazy" preload="metadata">
+                <video autoplay controls muted loading="lazy" preload="metadata">
                   <source src="static/videos/real-world/L_compressed.mp4" type="video/mp4">
                 </video>
               </div>
               <div class="item video-wrapper">
-                <video id="video1" autoplay controls muted loop loading="lazy" preload="metadata">
+                <video autoplay controls muted loading="lazy" preload="metadata">
                   <source src="static/videos/real-world/R_compressed.mp4" type="video/mp4">
                 </video>
               </div>
@@ -471,37 +504,37 @@
             </p>
           </div>
           <div style="width: 60%; margin: auto;">
-            <div id="results-carousel" class="carousel results-carousel">
+            <div class="carousel results-carousel" class="carousel results-carousel">
               <div class="item video-wrapper">
-                <video id="video1" autoplay controls muted loop loading="lazy" preload="metadata">
+                <video autoplay controls muted loading="lazy" preload="metadata">
                   <source src="static/videos/one-object/gallery_videos/035_power_drill/animation.mp4" type="video/mp4">
                 </video>
               </div>
               <div class="item video-wrapper">
-                <video id="video1" autoplay controls muted loop loading="lazy" preload="metadata">
+                <video autoplay controls muted loading="lazy" preload="metadata">
                   <source src="static/videos/one-object/gallery_videos/043_phillips_screwdriver/animation.mp4"
                     type="video/mp4">
                 </video>
               </div>
               <div class="item video-wrapper">
-                <video id="video1" autoplay controls muted loop loading="lazy" preload="metadata">
+                <video autoplay controls muted loading="lazy" preload="metadata">
                   <source src="static/videos/one-object/gallery_videos/063-a_marbles/animation.mp4" type="video/mp4">
                 </video>
               </div>
               <div class="item video-wrapper">
-                <video id="video1" autoplay controls muted loop loading="lazy" preload="metadata">
+                <video autoplay controls muted loading="lazy" preload="metadata">
                   <source src="static/videos/one-object/gallery_videos/generated-3D-assets_mesh_131/animation.mp4"
                     type="video/mp4">
                 </video>
               </div>
               <div class="item video-wrapper">
-                <video id="video1" autoplay controls muted loop loading="lazy" preload="metadata">
+                <video autoplay controls muted loading="lazy" preload="metadata">
                   <source src="static/videos/one-object/gallery_videos/generated-3D-assets_wmesh_1/animation.mp4"
                     type="video/mp4">
                 </video>
               </div>
               <div class="item video-wrapper">
-                <video id="video1" autoplay controls muted loop loading="lazy" preload="metadata">
+                <video autoplay controls muted loading="lazy" preload="metadata">
                   <source src="static/videos/one-object/gallery_videos/R/animation.mp4" type="video/mp4">
                 </video>
               </div>
@@ -526,29 +559,29 @@
             </p>
           </div>
           <div style="width: 60%; margin: auto;">
-            <div id="results-carousel" class="carousel results-carousel">
+            <div class="carousel results-carousel" class="carousel results-carousel">
               <div class="item video-wrapper">
-                <video id="video1" autoplay controls muted loop loading="lazy" preload="metadata">
+                <video autoplay controls muted loading="lazy" preload="metadata">
                   <source src="static/videos/multi-object/bowl_A_pot_scrubber/animation.mp4" type="video/mp4">
                 </video>
               </div>
               <div class="item video-wrapper">
-                <video id="video2" autoplay controls muted loop loading="lazy" preload="metadata">
+                <video autoplay controls muted loading="lazy" preload="metadata">
                   <source src="static/videos/multi-object/A_mustard/animation.mp4" type="video/mp4">
                 </video>
               </div>
               <div class="item video-wrapper">
-                <video id="video3" autoplay controls muted loop loading="lazy" preload="metadata">
+                <video autoplay controls muted loading="lazy" preload="metadata">
                   <source src="static/videos/multi-object/I_block/animation.mp4" type="video/mp4">
                 </video>
               </div>
               <div class="item video-wrapper">
-                <video id="video4" autoplay controls muted loop loading="lazy" preload="metadata">
+                <video autoplay controls muted loading="lazy" preload="metadata">
                   <source src="static/videos/multi-object/bowl_A_scrubber/animation.mp4" type="video/mp4">
                 </video>
               </div>
               <div class="item video-wrapper">
-                <video id="video5" autoplay controls muted loop loading="lazy" preload="metadata">
+                <video autoplay controls muted loading="lazy" preload="metadata">
                   <source src="static/videos/multi-object/bowl_A_corn/animation.mp4" type="video/mp4">
                 </video>
               </div>
@@ -572,39 +605,39 @@
             </p>
           </div>
           <div style="width: 60%; margin: auto;">
-            <div id="results-carousel" class="carousel results-carousel">
+            <div class="carousel results-carousel" class="carousel results-carousel">
               <div class="item video-wrapper">
-                <video id="video1" autoplay controls muted loop loading="lazy" preload="metadata">
+                <video autoplay controls muted loading="lazy" preload="metadata">
                   <source src="static/videos/animated/6.mp4" type="video/mp4">
                 </video>
               </div>
               <div class="item video-wrapper">
-                <video id="video2" autoplay controls muted loop loading="lazy" preload="metadata">
+                <video autoplay controls muted loading="lazy" preload="metadata">
                   <source src="static/videos/animated/7.mp4" type="video/mp4">
                 </video>
               </div>
               <div class="item video-wrapper">
-                <video id="video3" autoplay controls muted loop loading="lazy" preload="metadata">
+                <video autoplay controls muted loading="lazy" preload="metadata">
                   <source src="static/videos/animated/3.mp4" type="video/mp4">
                 </video>
               </div>
               <div class="item video-wrapper">
-                <video id="video4" autoplay controls muted loop loading="lazy" preload="metadata">
+                <video autoplay controls muted loading="lazy" preload="metadata">
                   <source src="static/videos/animated/4.mp4" type="video/mp4">
                 </video>
               </div>
               <div class="item video-wrapper">
-                <video id="video5" autoplay controls muted loop loading="lazy" preload="metadata">
+                <video autoplay controls muted loading="lazy" preload="metadata">
                   <source src="static/videos/animated/5.mp4" type="video/mp4">
                 </video>
               </div>
               <div class="item video-wrapper">
-                <video id="video6" autoplay controls muted loop loading="lazy" preload="metadata">
+                <video autoplay controls muted loading="lazy" preload="metadata">
                   <source src="static/videos/animated/1.mp4" type="video/mp4">
                 </video>
               </div>
               <div class="item video-wrapper">
-                <video id="video7" autoplay controls muted loop loading="lazy" preload="metadata">
+                <video autoplay controls muted loading="lazy" preload="metadata">
                   <source src="static/videos/animated/2.mp4" type="video/mp4">
                 </video>
               </div>
