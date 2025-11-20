@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<style>
+  .smallcaps {
+    font-variant: small-caps;
+  }
+
+  .hero--gradient {
+    background:
+      radial-gradient(1200px 400px at 50% -10%, rgba(37, 99, 235, 0.12), transparent 60%),
+      linear-gradient(180deg, rgba(2, 6, 23, 0.85) 0%, rgba(2, 6, 23, 0.65) 60%, rgba(2, 6, 23, 0.0) 100%);
+    color: #fff;
+  }
+
+  .hero--gradient .title {
+    color: #fff;
+  }
+
+  .brand-accent {
+    background: linear-gradient(90deg, #93c5fd, #60a5fa, #3b82f6, #2563eb);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .nowrap {
+    white-space: nowrap;
+  }
+
+  .author-list {
+    display: flex;
+    gap: .5rem;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: .75rem;
+  }
+
+  .author-list .author a {
+    border-bottom: 1px dotted rgba(255, 255, 255, .35);
+  }
+
+  .middot {
+    opacity: .6;
+  }
+
+  .affiliations {
+    opacity: .8;
+    margin-top: .25rem;
+  }
+
+  .link-badges {
+    margin-top: 1.25rem;
+  }
+
+  .meta-tags {
+    margin-top: .5rem;
+    display: flex;
+    gap: .5rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  /* Teaser */
+  .teaser-section {
+    padding-top: 2.25rem;
+  }
+
+  .video-figure {
+    margin: 0;
+  }
+
+  .video-frame {
+    position: relative;
+    border-radius: 1.25rem;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(2, 6, 23, .25);
+    background: #000;
+  }
+
+  .teaser-video {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .teaser-overlay {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    background: linear-gradient(180deg, rgba(0, 0, 0, .25), rgba(0, 0, 0, .45));
+    border: 0;
+    cursor: pointer;
+    opacity: 1;
+    transition: opacity .25s ease;
+    color: #fff;
+  }
+
+  .teaser-overlay.is-hidden {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .teaser-overlay .icon {
+    transform: scale(1.2);
+    filter: drop-shadow(0 6px 12px rgba(0, 0, 0, .35));
+  }
+
+  .teaser-caption {
+    max-width: 900px;
+    margin: .75rem auto 0;
+    font-size: 1.05rem;
+    color: #475569;
+  }
+
+  .hero--gradient .teaser-caption {
+    color: #cbd5e1;
+  }
+
+  :root {
+    --link-hero: #c7d2fe;          /* soft indigo */
+    --link-hero-hover: #ffffff;    /* white on hover */
+  }
+  
+  /* Title/author hero section links */
+  .hero--gradient a {
+    color: var(--link-hero);
+    text-decoration: none;
+    border-bottom: 1px dotted rgba(255,255,255,.35);
+  }
+  
+  .hero--gradient a:hover {
+    color: var(--link-hero-hover);
+    border-bottom-color: rgba(255,255,255,.75);
+  }
+  
+  /* Ensure author underline uses the same style */
+  .author-list .author a {
+    border-bottom-color: rgba(255,255,255,.35);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+
+    .teaser-overlay,
+    .teaser-video {
+      transition: none;
+    }
+  }
+</style>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+  <!-- Primary Meta Tags -->
+  <!-- TODO: Replace with your paper title and author names -->
+  <meta name="title" content="ShadowDraw: From Any Object to Shadow-Drawing Compositional Art">
+  <!-- TODO: Write a compelling 150-160 character description of your research -->
+  <meta name="description"
+    content="We introduce ShadowDraw, a framework that transforms ordinary 3D objects into shadow-drawing compositional art. By jointly predicting scene parameters---including object pose and lighting---and an incomplete line drawing, our framework ensures that the cast shadow seamlessly completes the drawing into a recognizable image.">
+  <!-- TODO: Add 5-10 relevant keywords for your research area -->
+  <meta name="keywords"
+    content="shadow-drawing, compositional art, 3D object, scene understanding, generative modeling">
+  <!-- TODO: List all authors -->
+  <meta name="author" content="">
+  <meta name="robots" content="index, follow">
+  <meta name="language" content="English">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="article">
+  <!-- TODO: Replace with your institution or lab name -->
+  <meta property="og:site_name" content="ShadowDraw">
+  <!-- TODO: Same as paper title above -->
+  <meta property="og:title" content="ShadowDraw: From Any Object to Shadow-Drawing Compositional Art">
+  <!-- TODO: Same as description above -->
+  <meta property="og:description"
+    content="We introduce ShadowDraw, a framework that transforms ordinary 3D objects into shadow-drawing compositional art. By jointly predicting scene parameters---including object pose and lighting---and an incomplete line drawing, our framework ensures that the cast shadow seamlessly completes the drawing into a recognizable image.">
+  <!-- TODO: Replace with your actual website URL -->
+  <meta property="og:url" content="https://red-fairy.github.io/ShadowDraw/">
+  <!-- TODO: Create a 1200x630px preview image and update path -->
+  <meta property="og:image" content="https://red-fairy.github.io/ShadowDraw/static/images/social_preview.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt"
+    content="ShadowDraw: From Any Object to Shadow-Drawing Compositional Art - Research Preview">
+  <meta property="article:published_time" content="2024-01-01T00:00:00.000Z">
+  <meta property="article:author" content="FIRST_AUTHOR_NAME">
+  <meta property="article:section" content="Research">
+  <meta property="article:tag" content="KEYWORD1">
+  <meta property="article:tag" content="KEYWORD2">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <!-- TODO: Replace with your lab/institution Twitter handle -->
+  <meta name="twitter:site" content="@red_fairy">
+  <!-- TODO: Replace with first author's Twitter handle -->
+  <meta name="twitter:creator" content="@AUTHOR_TWITTER_HANDLE">
+  <!-- TODO: Same as paper title above -->
+  <meta name="twitter:title" content="ShadowDraw: From Any Object to Shadow-Drawing Compositional Art">
+  <!-- TODO: Same as description above -->
+  <meta name="twitter:description"
+    content="We introduce ShadowDraw, a framework that transforms ordinary 3D objects into shadow-drawing compositional art. By jointly predicting scene parameters---including object pose and lighting---and an incomplete line drawing, our framework ensures that the cast shadow seamlessly completes the drawing into a recognizable image.">
+  <!-- TODO: Same as social preview image above -->
+  <meta name="twitter:image" content="https://red-fairy.github.io/ShadowDraw/static/images/social_preview.png">
+  <meta name="twitter:image:alt" content="PAPER_TITLE - Research Preview">
+
+  <!-- Academic/Research Specific -->
+  <meta name="citation_title" content="ShadowDraw: From Any Object to Shadow-Drawing Compositional Art">
+  <meta name="citation_author" content="FIRST_AUTHOR_LAST, FIRST_AUTHOR_FIRST">
+  <meta name="citation_author" content="SECOND_AUTHOR_LAST, SECOND_AUTHOR_FIRST">
+  <meta name="citation_author" content="THIRD_AUTHOR_LAST, THIRD_AUTHOR_FIRST">
+  <meta name="citation_publication_date" content="2025">
+  <meta name="citation_conference_title" content="CONFERENCE_NAME">
+  <meta name="citation_pdf_url" content="">
+
+  <!-- Additional SEO -->
+  <meta name="theme-color" content="#2563eb">
+  <meta name="msapplication-TileColor" content="#2563eb">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+
+  <!-- Preconnect for performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://ajax.googleapis.com">
+  <link rel="preconnect" href="https://documentcloud.adobe.com">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+
+
+  <!-- TODO: Replace with your paper title and authors -->
+  <title>ShadowDraw: From Any Object to Shadow-Drawing Compositional Art</title>
+
+  <!-- Favicon and App Icons -->
+  <link rel="icon" type="image/x-icon" href="static/images/light.svg">
+  <link rel="apple-touch-icon" href="static/images/light.svg">
+
+  <!-- Critical CSS - Load synchronously -->
+  <link rel="stylesheet" href="static/css/bulma.min.css">
+  <link rel="stylesheet" href="static/css/index.css">
+
+  <!-- Non-critical CSS - Load asynchronously -->
+  <link rel="preload" href="static/css/bulma-carousel.min.css" as="style"
+    onload="this.onload=null;this.rel='stylesheet'">
+  <link rel="preload" href="static/css/bulma-slider.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <link rel="preload" href="static/css/fontawesome.all.min.css" as="style"
+    onload="this.onload=null;this.rel='stylesheet'">
+  <link rel="preload" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css" as="style"
+    onload="this.onload=null;this.rel='stylesheet'">
+
+  <!-- Fallback for browsers that don't support preload -->
+  <noscript>
+    <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
+    <link rel="stylesheet" href="static/css/bulma-slider.min.css">
+    <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  </noscript>
+
+  <!-- Fonts - Optimized loading -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Defer non-critical JavaScript -->
+  <script defer src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
+  <script defer src="static/js/fontawesome.all.min.js"></script>
+  <script defer src="static/js/bulma-carousel.min.js"></script>
+  <script defer src="static/js/bulma-slider.min.js"></script>
+  <script defer src="static/js/index.js"></script>
+
+  <!-- Structured Data for Academic Papers -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ScholarlyArticle",
+    "headline": "PAPER_TITLE",
+    "description": "BRIEF_DESCRIPTION_OF_YOUR_RESEARCH_CONTRIBUTION_AND_FINDINGS",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "FIRST_AUTHOR_NAME",
+        "affiliation": {
+          "@type": "Organization",
+          "name": "INSTITUTION_NAME"
+        }
+      },
+      {
+        "@type": "Person",
+        "name": "SECOND_AUTHOR_NAME",
+        "affiliation": {
+          "@type": "Organization",
+          "name": "INSTITUTION_NAME"
+        }
+      }
+    ],
+    "datePublished": "2024-01-01",
+    "publisher": {
+      "@type": "Organization",
+      "name": "CONFERENCE_OR_JOURNAL_NAME"
+    },
+    "url": "https://YOUR_DOMAIN.com/YOUR_PROJECT_PAGE",
+    "image": "https://YOUR_DOMAIN.com/static/images/social_preview.png",
+    "keywords": ["KEYWORD1", "KEYWORD2", "KEYWORD3", "machine learning", "computer vision"],
+    "abstract": "FULL_ABSTRACT_TEXT_HERE",
+    "citation": "BIBTEX_CITATION_HERE",
+    "isAccessibleForFree": true,
+    "license": "https://creativecommons.org/licenses/by/4.0/",
+    "mainEntity": {
+      "@type": "WebPage",
+      "@id": "https://YOUR_DOMAIN.com/YOUR_PROJECT_PAGE"
+    },
+    "about": [
+      {
+        "@type": "Thing",
+        "name": "RESEARCH_AREA_1"
+      },
+      {
+        "@type": "Thing", 
+        "name": "RESEARCH_AREA_2"
+      }
+    ]
+  }
+  </script>
+
+  <!-- Website/Organization Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "INSTITUTION_OR_LAB_NAME",
+    "url": "https://YOUR_INSTITUTION_WEBSITE.com",
+    "logo": "https://YOUR_DOMAIN.com/static/images/favicon.ico",
+    "sameAs": [
+      "https://twitter.com/YOUR_TWITTER_HANDLE",
+      "https://github.com/YOUR_GITHUB_USERNAME"
+    ]
+  }
+  </script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Initialize all carousels on the page
+      const carousels = bulmaCarousel.attach('.results-carousel', {
+        autoplay: false,  // stop built-in auto-advance
+        loop: true        // optional: cycle back to first video
+      });
+
+      // For each carousel instance
+      carousels.forEach(carousel => {
+        // Find all videos inside this carousel's container
+        const videos = carousel.element.querySelectorAll('video');
+
+        videos.forEach(video => {
+          video.addEventListener('ended', () => {
+            // Go to next slide in THIS carousel only
+            carousel.next();
+          });
+        });
+      });
+    });
+  </script>
+</head>
+
+<body>
+
+
+  <!-- Scroll to Top Button -->
+  <button class="scroll-to-top" onclick="scrollToTop()" title="Scroll to top" aria-label="Scroll to top">
+    <i class="fas fa-chevron-up"></i>
+  </button>
+
+  <main id="main-content">
+    <section class="hero is-medium hero--gradient">
+      <div class="hero-body">
+        <div class="container is-max-desktop">
+          <div class="has-text-centered">
+            <h1 class="title is-1 is-spaced publication-title">
+              <span class="brand-accent">ShadowDraw</span>: From Any Object to <span
+                class="nowrap">Shadow-Drawing</span> Compositional Art
+            </h1>
+            <div class="is-size-4 publication-authors">
+              <span class="author-block">
+                <a href="https://red-fairy.github.io/" target="_blank">Rundong Luo</a>,</span>
+              <span class="author-block">
+                <a href="https://www.cs.cornell.edu/~snavely/" target="_blank">Noah Snavely</a>,</span>
+              <span class="author-block">
+                <a href="https://www.cs.cornell.edu/~weichiu/" target="_blank">Wei-Chiu Ma</a>
+              </span>
+            </div>
+
+            <div class="is-size-4 publication-authors">
+              <span>
+                <a href="https://www.cs.cornell.edu/" target="_blank">Cornell University</a>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Teaser video-->
+    <section class="section teaser-section">
+      <div class="container is-max-desktop">
+        <figure class="video-figure">
+          <div class="video-frame">
+            <!-- Replace poster path if you have one -->
+            <video id="teaser" class="teaser-video"
+              controls playsinline loop>
+              <source src="static/videos/demo_v2.mp4" type="video/mp4" />
+            </video>
+          </div>
+          <figcaption class="teaser-caption has-text-centered">
+            <strong style="font-size: 1.5rem; color: #667eea;">
+              <i class="fa-solid fa-lightbulb" style="color: gold; font-size: 24px;"></i>
+              Demonstration of our framework in action
+              <i class="fa-solid fa-lightbulb" style="color: gold; font-size: 24px;"></i>
+            </strong>
+            <br><br>
+            Given an arbitrary 3D object, our method jointly predicts scene parameters—object pose, lighting—and an incomplete line drawing, such that the cast shadow seamlessly completes it into a coherent image.
+            <br><br>
+            Our framework is easy to deploy: sketch the generated line drawing, place the object, and turn on the light. The cast shadow completes the composition, revealing the interplay between geometry, illumination, and art.
+          </figcaption>
+        </figure>
+      </div>
+    </section>
+    <!-- End teaser video -->
+
+    <!-- Paper abstract -->
+    <section class="section hero is-light">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered has-text-centered">
+          <div class="column is-four-fifths">
+            <h2 class="title is-3">Abstract</h2>
+            <div class="content has-text-justified">
+              <p>
+                We introduce ShadowDraw, a framework that transforms ordinary 3D objects
+                into shadow-drawing compositional art. Given a 3D object, our system predicts scene
+                parameters (including object pose and lighting) together with a partial line drawing, such that the
+                cast shadow completes the drawing into a recognizable image. To this end, we optimize scene
+                configurations to reveal meaningful shadows, employ shadow strokes to
+                guide line drawing generation, and adopt automatic evaluation to enforce shadow-drawing coherence and
+                visual quality. Experiments show that ShadowDraw produces compelling
+                results across diverse inputs, from real-world scans and curated datasets to generative assets, and
+                naturally extends to multi-object scenes, animations, and physical deployments. Our work provides a
+                practical pipeline for creating shadow-drawing art and broadens the design space of computational visual
+                art, bridging the gap between algorithmic design and artistic storytelling.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- End paper abstract -->
+
+    <section class="hero is-small">
+      <div class="hero-body">
+        <div class="container">
+          <h2 class="title is-3">Framework</h2>
+          <div style="width: 95%; margin: auto;">
+            <div class="content has-text-justified">
+              <div class="item">
+                <img src="static/images/framework.png" alt="" />
+              </div>
+              <br>
+              <div class="columns">
+                <p>
+                  <strong>Framework overview.</strong> Given a 3D object, we first optimize scene parameters specifying
+                  the object pose and light configuration. From the rendered shadows, we derive text prompts with VLM
+                  and extract shadow strokes, which together condition the line drawing generator. The generated
+                  drawings are then filtered using a VQA-based coherence check and ranked by semantic and quality
+                  metrics. The final output is a partial line drawing along with scene parameters that, when rendered,
+                  form a coherent shadow-drawing composition.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+    </section>
+
+
+    <section class="hero is-small is-light">
+      <div class="hero-body">
+        <div class="container">
+          <h2 class="title is-3">Gallery</h2>
+          <div style="width: 95%; margin: auto;">
+            <p>
+              We showcase a collection of shadow-drawing compositions generated by our framework.
+              Each composition is a result of a different scene configuration, including different object poses and
+              light directions.
+            </p>
+          </div>
+          <br>
+          <div style="width: 95%; margin: auto;">
+            <div class="content has-text-justified">
+              <div class="item">
+                <img src="static/images/gallery.png" alt="" />
+              </div>
+            </div>
+          </div>
+        </div>
+    </section>
+
+    <section class="hero is-small">
+      <div class="hero-body">
+        <div class="container">
+          <h2 class="title is-3">Real-world deployment</h2>
+          <div style="width: 95%; margin: auto;">
+            <p>
+              Because our method requires only a 3D object and a single spotlight, it can be easily reproduced in
+              physical setups without specialized equipment. For instance, everyday household items combined with a
+              phone flashlight suffice to create compelling shadow-drawing compositions.
+            </p>
+          </div>
+          <div style="width: 80%; margin: auto;">
+            <div class="carousel results-carousel" class="carousel results-carousel">
+              <div class="item video-wrapper">
+                <video autoplay controls muted loading="lazy" preload="metadata">
+                  <source src="static/videos/real-world/C_compressed.mp4" type="video/mp4">
+                </video>
+              </div>
+              <div class="item video-wrapper">
+                <video autoplay controls muted loading="lazy" preload="metadata">
+                  <source src="static/videos/real-world/V_compressed.mp4" type="video/mp4">
+                </video>
+              </div>
+              <div class="item video-wrapper">
+                <video autoplay controls muted loading="lazy" preload="metadata">
+                  <source src="static/videos/real-world/P_compressed.mp4" type="video/mp4">
+                </video>
+              </div>
+              <div class="item video-wrapper">
+                <video autoplay controls muted loading="lazy" preload="metadata">
+                  <source src="static/videos/real-world/R_compressed.mp4" type="video/mp4">
+                </video>
+              </div>
+              <div class="item video-wrapper">
+                <video autoplay controls muted loading="lazy" preload="metadata">
+                  <source src="static/videos/real-world/I_compressed.mp4" type="video/mp4">
+                </video>
+              </div>
+              <div class="item video-wrapper">                
+                <video autoplay controls muted loading="lazy" preload="metadata">
+                  <source src="static/videos/real-world/L_compressed.mp4" type="video/mp4">
+                </video>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="hero is-small is-light">
+      <div class="hero-body">
+        <div class="container">
+          <h2 class="title is-3">One object, diverse results</h2>
+          <div style="width: 95%; margin: auto;">
+            <p>Our framework by design generates multiple shadow-drawing compositions from the same real-world object.
+              By
+              varying the light direction, the object pose, and the underlying line drawing, we obtain a collection of
+              artworks that highlight different aspects of the same object. This demonstrates how a single object can
+              serve as the basis for a wide range of artistic expressions.
+            </p>
+          </div>
+          <div style="width: 60%; margin: auto;">
+            <div class="carousel results-carousel" class="carousel results-carousel">
+              <div class="item video-wrapper">
+                <video autoplay controls muted loading="lazy" preload="metadata">
+                  <source src="static/videos/one-object/gallery_videos/035_power_drill/animation.mp4" type="video/mp4">
+                </video>
+              </div>
+              <div class="item video-wrapper">
+                <video autoplay controls muted loading="lazy" preload="metadata">
+                  <source src="static/videos/one-object/gallery_videos/043_phillips_screwdriver/animation.mp4"
+                    type="video/mp4">
+                </video>
+              </div>
+              <div class="item video-wrapper">
+                <video autoplay controls muted loading="lazy" preload="metadata">
+                  <source src="static/videos/one-object/gallery_videos/063-a_marbles/animation.mp4" type="video/mp4">
+                </video>
+              </div>
+              <div class="item video-wrapper">
+                <video autoplay controls muted loading="lazy" preload="metadata">
+                  <source src="static/videos/one-object/gallery_videos/generated-3D-assets_mesh_131/animation.mp4"
+                    type="video/mp4">
+                </video>
+              </div>
+              <div class="item video-wrapper">
+                <video autoplay controls muted loading="lazy" preload="metadata">
+                  <source src="static/videos/one-object/gallery_videos/generated-3D-assets_wmesh_1/animation.mp4"
+                    type="video/mp4">
+                </video>
+              </div>
+              <div class="item video-wrapper">
+                <video autoplay controls muted loading="lazy" preload="metadata">
+                  <source src="static/videos/one-object/gallery_videos/R/animation.mp4" type="video/mp4">
+                </video>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="hero is-small">
+      <div class="hero-body">
+        <div class="container">
+          <h2 class="title is-3">Multi-object compositions</h2>
+          <div style="width: 95%; margin: auto;">
+            <p>Our framework naturally extends to scenes involving multiple objects. For each candidate configuration,
+              we
+              independently sample self-rotation angles, arrange the objects vertically, and release them in Blender's
+              physics simulation to obtain a stable stacked layout. Once equilibrium is reached, the configuration is
+              treated as a single composite object, allowing the rest of the pipeline to be applied directly. This
+              enables more elaborate visual narratives where different objects contribute complementary shadow
+              structures.
+            </p>
+          </div>
+          <div style="width: 60%; margin: auto;">
+            <div class="carousel results-carousel" class="carousel results-carousel">
+              <div class="item video-wrapper">
+                <video autoplay controls muted loading="lazy" preload="metadata">
+                  <source src="static/videos/multi-object/bowl_A_pot_scrubber/animation.mp4" type="video/mp4">
+                </video>
+              </div>
+              <div class="item video-wrapper">
+                <video autoplay controls muted loading="lazy" preload="metadata">
+                  <source src="static/videos/multi-object/A_mustard/animation.mp4" type="video/mp4">
+                </video>
+              </div>
+              <div class="item video-wrapper">
+                <video autoplay controls muted loading="lazy" preload="metadata">
+                  <source src="static/videos/multi-object/I_block/animation.mp4" type="video/mp4">
+                </video>
+              </div>
+              <div class="item video-wrapper">
+                <video autoplay controls muted loading="lazy" preload="metadata">
+                  <source src="static/videos/multi-object/bowl_A_scrubber/animation.mp4" type="video/mp4">
+                </video>
+              </div>
+              <div class="item video-wrapper">
+                <video autoplay controls muted loading="lazy" preload="metadata">
+                  <source src="static/videos/multi-object/bowl_A_corn/animation.mp4" type="video/mp4">
+                </video>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <section class="hero is-small is-light">
+      <div class="hero-body">
+        <div class="container">
+          <h2 class="title is-3">Animated objects</h2>
+          <div style="width: 95%; margin: auto;">
+            <p>Our framework also supports animated objects without extra training. For each configuration, we render
+              five key frames and overlay their shadow strokes into a single image, using distinct colors to denote
+              frames. This composite is then fed to the VLM to generate the corresponding prompt. As in the
+              static-object setting, we apply a binary mask to restrict stroke placement, defined as the intersection of
+              all shadow regions and their neighborhoods, to avoid strokes in dynamically changing areas.
+            </p>
+          </div>
+          <div style="width: 60%; margin: auto;">
+            <div class="carousel results-carousel" class="carousel results-carousel">
+              <div class="item video-wrapper">
+                <video autoplay controls muted loading="lazy" preload="metadata">
+                  <source src="static/videos/animated/6.mp4" type="video/mp4">
+                </video>
+              </div>
+              <div class="item video-wrapper">
+                <video autoplay controls muted loading="lazy" preload="metadata">
+                  <source src="static/videos/animated/7.mp4" type="video/mp4">
+                </video>
+              </div>
+              <div class="item video-wrapper">
+                <video autoplay controls muted loading="lazy" preload="metadata">
+                  <source src="static/videos/animated/3.mp4" type="video/mp4">
+                </video>
+              </div>
+              <div class="item video-wrapper">
+                <video autoplay controls muted loading="lazy" preload="metadata">
+                  <source src="static/videos/animated/4.mp4" type="video/mp4">
+                </video>
+              </div>
+              <div class="item video-wrapper">
+                <video autoplay controls muted loading="lazy" preload="metadata">
+                  <source src="static/videos/animated/5.mp4" type="video/mp4">
+                </video>
+              </div>
+              <div class="item video-wrapper">
+                <video autoplay controls muted loading="lazy" preload="metadata">
+                  <source src="static/videos/animated/1.mp4" type="video/mp4">
+                </video>
+              </div>
+              <div class="item video-wrapper">
+                <video autoplay controls muted loading="lazy" preload="metadata">
+                  <source src="static/videos/animated/2.mp4" type="video/mp4">
+                </video>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+
+    </footer>
+
+    <!-- Statcounter tracking code -->
+
+    <!-- You can add a tracker to track page visits by creating an account at statcounter.com -->
+
+    <!-- End of Statcounter Code -->
+
+</body>
+
+<script>
+  (function () {
+    const video = document.getElementById('teaser');
+    if (!video) return;
+  
+    // --- Remove autoplay; video starts paused and muted ---
+    video.pause();
+    video.muted = true;
+  
+    // --- When the user starts playing, unmute automatically ---
+    video.addEventListener('play', () => {
+      if (video.muted) {
+        video.muted = false;
+      }
+    });
+  
+    // --- Pause when off-screen, resume when visible ---
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          if (video.paused && video.currentTime > 0) {
+            video.play().catch(() => {});
+          }
+        } else {
+          if (!video.paused) {
+            video.pause();
+          }
+        }
+      });
+    }, { threshold: 0.25 });
+  
+    io.observe(video);
+  })();
+  </script>
+  
+
+</html>
