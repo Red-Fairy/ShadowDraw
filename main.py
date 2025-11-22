@@ -652,7 +652,7 @@ parser.add_argument('--min_sketch_region_size', type=int, default=40, help='The 
 parser.add_argument('--erode_pixels', type=int, default=7, help='The number of pixels to erode the object mask')
 
 # rendering parameters
-parser.add_argument('--blender_path', type=str, default='/home/rl897/art-from-phys/blender-4.3.2-linux-x64/blender')
+parser.add_argument('--blender_path', type=str, default='blender-4.3.2-linux-x64/blender')
 parser.add_argument('--object_scale', type=float, default=0.8)
 parser.add_argument('--translate_ratio', type=float, default=0.8)
 parser.add_argument('--shadow_length_min', type=float, default=0.8)
