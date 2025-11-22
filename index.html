@@ -120,25 +120,27 @@
   }
 
   :root {
-    --link-hero: #c7d2fe;          /* soft indigo */
-    --link-hero-hover: #ffffff;    /* white on hover */
+    --link-hero: #c7d2fe;
+    /* soft indigo */
+    --link-hero-hover: #ffffff;
+    /* white on hover */
   }
-  
+
   /* Title/author hero section links */
   .hero--gradient a {
     color: var(--link-hero);
     text-decoration: none;
-    border-bottom: 1px dotted rgba(255,255,255,.35);
+    border-bottom: 1px dotted rgba(255, 255, 255, .35);
   }
-  
+
   .hero--gradient a:hover {
     color: var(--link-hero-hover);
-    border-bottom-color: rgba(255,255,255,.75);
+    border-bottom-color: rgba(255, 255, 255, .75);
   }
-  
+
   /* Ensure author underline uses the same style */
   .author-list .author a {
-    border-bottom-color: rgba(255,255,255,.35);
+    border-bottom-color: rgba(255, 255, 255, .35);
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -389,14 +391,56 @@
               </span>
             </div>
 
-            <div class="is-size-4 publication-authors">
+            <!-- <div class="is-size-4 publication-authors">
               <span>
                 <a href="https://www.cs.cornell.edu/" target="_blank">Cornell University</a>
               </span>
+            </div> -->
+
+            <div style="margin-bottom: 0.5rem;"></div>
+
+            <div class="is-size-5 publication-authors">
+              <span class="author-block">Cornell University</span>
+            </div>
+
+            <div class="column has-text-centered">
+              <div class="publication-links">
+                <!-- TODO: Update with your arXiv paper ID -->
+                <!-- <span class="link-block">
+                  <a href="https://arxiv.org/pdf/<ARXIV PAPER ID>.pdf" target="_blank"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                    </span>
+                    <span>Paper</span>
+                  </a>
+                </span> -->
+
+                <!-- TODO: Replace with your GitHub repository URL -->
+                <span class="link-block">
+                  <a href="https://github.com/ShadowDraw" target="_blank"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fab fa-github"></i>
+                    </span>
+                    <span>Code</span>
+                  </a>
+                </span>
+
+                <!-- TODO: Update with your arXiv paper ID -->
+                <span class="link-block">
+                  <a href="https://arxiv.org/abs/<ARXIV PAPER ID>" target="_blank"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                    </span>
+                    <span>arXiv</span>
+                  </a>
+                </span>
+              </div>
             </div>
           </div>
         </div>
-      </div>
     </section>
 
     <!-- Teaser video-->
@@ -405,8 +449,7 @@
         <figure class="video-figure">
           <div class="video-frame">
             <!-- Replace poster path if you have one -->
-            <video id="teaser" class="teaser-video"
-              controls playsinline loop>
+            <video id="teaser" class="teaser-video" controls playsinline loop>
               <source src="static/videos/demo_v2.mp4" type="video/mp4" />
             </video>
           </div>
@@ -417,9 +460,11 @@
               <i class="fa-solid fa-lightbulb" style="color: gold; font-size: 24px;"></i>
             </strong>
             <br><br>
-            Given an arbitrary 3D object, our method jointly predicts scene parameters—object pose, lighting—and an incomplete line drawing, such that the cast shadow seamlessly completes it into a coherent image.
+            Given an arbitrary 3D object, our method jointly predicts scene parameters—object pose, lighting—and an
+            incomplete line drawing, such that the cast shadow seamlessly completes it into a coherent image.
             <br><br>
-            Our framework is easy to deploy: sketch the generated line drawing, place the object, and turn on the light. The cast shadow completes the composition, revealing the interplay between geometry, illumination, and art.
+            Our framework is easy to deploy: sketch the generated line drawing, place the object, and turn on the light.
+            The cast shadow completes the composition, revealing the interplay between geometry, illumination, and art.
           </figcaption>
         </figure>
       </div>
@@ -539,7 +584,7 @@
                   <source src="static/videos/real-world/I_compressed.mp4" type="video/mp4">
                 </video>
               </div>
-              <div class="item video-wrapper">                
+              <div class="item video-wrapper">
                 <video autoplay controls muted loading="lazy" preload="metadata">
                   <source src="static/videos/real-world/L_compressed.mp4" type="video/mp4">
                 </video>
@@ -722,24 +767,24 @@
   (function () {
     const video = document.getElementById('teaser');
     if (!video) return;
-  
+
     // --- Remove autoplay; video starts paused and muted ---
     video.pause();
     video.muted = true;
-  
+
     // --- When the user starts playing, unmute automatically ---
     video.addEventListener('play', () => {
       if (video.muted) {
         video.muted = false;
       }
     });
-  
+
     // --- Pause when off-screen, resume when visible ---
     const io = new IntersectionObserver(entries => {
       entries.forEach(e => {
         if (e.isIntersecting) {
           if (video.paused && video.currentTime > 0) {
-            video.play().catch(() => {});
+            video.play().catch(() => { });
           }
         } else {
           if (!video.paused) {
@@ -748,10 +793,10 @@
         }
       });
     }, { threshold: 0.25 });
-  
+
     io.observe(video);
   })();
-  </script>
-  
+</script>
+
 
 </html>
