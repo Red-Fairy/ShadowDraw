@@ -75,7 +75,7 @@ If you find this work useful, please consider citing:
 @article{luo2025shadowdraw,
   title={ShadowDraw: From Any Object to Shadow–Drawing Compositional Art},
   author={Luo, Rundong and Snavely, Noah and Ma, Wei-Chiu},
-  journal={arXiv preprint arXiv:2504.07940},
+  journal={arXiv preprint arXiv:2512.05110},
   year={2025}   
 }
 ```
