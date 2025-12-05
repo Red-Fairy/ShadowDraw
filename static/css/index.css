@@ -638,6 +638,15 @@ code {
   }
 }
 
+.teaser-caption {
+  max-width: 960px;
+  margin: 1.5rem auto 0;
+}
+
+.teaser-text {
+  margin-top: 1.5rem;
+}
+
 @media screen and (max-width: 480px) {
   .publication-title {
     font-size: 2rem !important;
@@ -731,5 +740,27 @@ a:focus {
   }
 }
 
+.hero--gradient {
+  background: linear-gradient(
+    180deg,
+    #f8fafc 0%,
+    #f1f5f9 100%
+  ); /* soft gray gradient */
+  border-bottom: 1px solid var(--border-color);
+}
 
+/* Improve text visibility for authors */
+.publication-authors {
+  color: #374151 !important; /* Tailwind gray-700, much clearer */
+  font-weight: 500 !important;
+}
+
+.publication-authors a {
+  color: #1f2937 !important; /* darker, high contrast */
+  font-weight: 600 !important;
+}
+
+.publication-authors a:hover {
+  color: var(--primary-color) !important;
+}
 
