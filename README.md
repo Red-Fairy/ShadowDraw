@@ -3,7 +3,7 @@
 </h2>
 
 <div align="center">
-    <a href="https://arxiv.org/abs/2504.07940" target="_blank">
+    <a href="https://arxiv.org/abs/2512.05110" target="_blank">
     <img src="https://img.shields.io/badge/Paper-arXiv 2025-red" alt="Paper"/></a>
     <a href="https://red-fairy.github.io/ShadowDraw/" target="_blank">
     <img src="https://img.shields.io/badge/Demo-Project Page-blue" alt="Project Page"/></a>
@@ -80,4 +80,4 @@ If you find this work useful, please consider citing:
 }
 ```
 
-The shadow-drawing concept is inspired by the work of Belgian artist Vincent Bal, whose playful works reveal how the cast shadows of everyday objects can seamlessly complete drawn elements. Please refer to his [Instagram page](https://www.instagram.com/vincent_bal/) for more fantastic results.
+The shadow-drawing concept is inspired by the work of Belgium artist Vincent Bal, whose playful works reveal how the cast shadows of everyday objects can seamlessly complete drawn elements. Please refer to his [Instagram page](https://www.instagram.com/vincent_bal/) for more fantastic results.
