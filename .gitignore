@@ -1,3 +1,11 @@
-*.zip
-*/.DS_Store
-.DS_Store
+results/*
+checkpoints/*
+cache/*
+__pycache__/*
+*.pyc
+*.pyo
+*.pyd
+*.pyw
+*.pyz
+checkpoints/
+src/*
