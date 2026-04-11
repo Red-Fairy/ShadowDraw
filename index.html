@@ -437,6 +437,20 @@
 
               </div>
             </div>
+
+            <!-- Key highlights bar -->
+            <div style="display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap; margin-top: 1.5rem; margin-bottom: 0.25rem;">
+              <span style="display: inline-flex; align-items: center; gap: 0.4rem; background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.22); border-radius: 9999px; padding: 0.35rem 0.9rem; font-size: 0.875rem; font-weight: 600; color: rgba(255,255,255,0.95); backdrop-filter: blur(8px);">
+                <i class="fas fa-trophy" style="color: #fbbf24;"></i>&nbsp;CVPR 2026
+              </span>
+              <span style="display: inline-flex; align-items: center; gap: 0.4rem; background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.22); border-radius: 9999px; padding: 0.35rem 0.9rem; font-size: 0.875rem; font-weight: 600; color: rgba(255,255,255,0.95); backdrop-filter: blur(8px);">
+                <i class="fas fa-university" style="color: #93c5fd;"></i>&nbsp;Cornell University
+              </span>
+              <span style="display: inline-flex; align-items: center; gap: 0.4rem; background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.22); border-radius: 9999px; padding: 0.35rem 0.9rem; font-size: 0.875rem; font-weight: 600; color: rgba(255,255,255,0.95); backdrop-filter: blur(8px);">
+                <i class="fas fa-palette" style="color: #f9a8d4;"></i>&nbsp;Computational Art
+              </span>
+            </div>
+
           </div>
         </div>
     </section>
@@ -470,6 +484,33 @@
       </div>
     </section>
     <!-- End teaser video -->
+
+    <!-- Inspiration / Motivation -->
+    <section class="section" style="background: #0f172a; color: #e2e8f0; border-top: 1px solid rgba(255,255,255,0.06); border-bottom: 1px solid rgba(255,255,255,0.06);">
+      <div class="container is-max-desktop">
+        <div class="has-text-centered">
+          <p style="font-size: 0.8rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #f59e0b; margin-bottom: 1rem;">
+            <i class="fas fa-lightbulb"></i>&nbsp; Inspiration
+          </p>
+          <h2 style="font-size: 1.75rem; font-weight: 800; color: #f8fafc; margin-bottom: 1.25rem; line-height: 1.3;">
+            From Shadowology to Computation
+          </h2>
+          <p style="font-size: 1.05rem; line-height: 1.85; color: #94a3b8; max-width: 700px; margin: 0 auto 1.5rem;">
+            This work is inspired by the delightful <strong style="color: #e2e8f0;">shadowology</strong> art of Belgian artist
+            <a href="https://www.instagram.com/vincent_bal/" target="_blank" style="color: #93c5fd; text-decoration: none; border-bottom: 1px dotted rgba(147,197,253,0.5);">Vincent Bal</a>,
+            who transforms the incidental shadows of everyday objects into imaginative line drawings — letting a teapot become a flying crane, or a comb become a city skyline.
+            <br><br>
+            ShadowDraw asks: <em style="color: #e2e8f0; font-style: italic;">can we automate this magical process?</em>
+            Given any 3D object, our framework finds the right pose and lighting so that the cast shadow,
+            together with a few drawn strokes, forms a coherent and recognizable image.
+          </p>
+          <a href="https://www.instagram.com/vincent_bal/" target="_blank" style="display: inline-flex; align-items: center; gap: 0.5rem; color: #f59e0b; font-weight: 600; font-size: 0.95rem; text-decoration: none; border-bottom: 1px solid rgba(245,158,11,0.4); padding-bottom: 2px;">
+            <i class="fab fa-instagram"></i>&nbsp;Explore Vincent Bal's shadowology&nbsp;<i class="fas fa-arrow-right" style="font-size: 0.8rem;"></i>
+          </a>
+        </div>
+      </div>
+    </section>
+    <!-- End Inspiration -->
 
     <!-- Paper abstract -->
     <section class="section hero is-light">
@@ -756,8 +797,50 @@
       </div>
     </section>
 
-    <footer class="footer">
+    <!-- BibTeX Citation -->
+    <section class="section hero is-light" id="bibtex">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column is-10">
+            <h2 class="title is-3 has-text-centered">Citation</h2>
+            <div class="bibtex-header">
+              <p style="color: var(--text-secondary); font-size: 0.95rem;">If you find this work useful, please cite:</p>
+              <button class="copy-bibtex-btn" onclick="copyBibtex(this)" title="Copy BibTeX to clipboard">
+                <i class="fas fa-copy"></i>
+                <span class="copy-text">Copy</span>
+              </button>
+            </div>
+            <pre id="bibtex-content">@inproceedings{luo2026shadowdraw,
+  title     = {ShadowDraw: From Any Object to Shadow-Drawing Compositional Art},
+  author    = {Luo, Rundong and Snavely, Noah and Ma, Wei-Chiu},
+  booktitle = {Proceedings of the IEEE/CVF Conference on Computer Vision
+               and Pattern Recognition (CVPR)},
+  year      = {2026}
+}</pre>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- End BibTeX -->
 
+    <footer class="footer">
+      <div class="container is-max-desktop">
+        <div class="content has-text-centered">
+          <p>
+            <strong>ShadowDraw</strong> &mdash;
+            <a href="https://red-fairy.github.io/" target="_blank">Rundong Luo</a>,
+            <a href="https://www.cs.cornell.edu/~snavely/" target="_blank">Noah Snavely</a>,
+            <a href="https://www.cs.cornell.edu/~weichiu/" target="_blank">Wei-Chiu Ma</a>.
+            Cornell University. CVPR 2026.
+          </p>
+          <p style="font-size: 0.875rem; color: var(--text-light); margin-top: 0.5rem;">
+            Website template adapted from
+            <a href="https://nerfies.github.io" target="_blank">Nerfies</a>.
+            Licensed under
+            <a href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">CC BY-SA 4.0</a>.
+          </p>
+        </div>
+      </div>
     </footer>
 
     <!-- Statcounter tracking code -->
@@ -769,6 +852,27 @@
 </body>
 
 <script>
+  function copyBibtex(btn) {
+    const text = document.getElementById('bibtex-content').innerText;
+    navigator.clipboard.writeText(text).then(() => {
+      btn.classList.add('copied');
+      btn.querySelector('.copy-text').textContent = 'Cop';
+      setTimeout(() => {
+        btn.classList.remove('copied');
+        btn.querySelector('.copy-text').textContent = 'Copy';
+      }, 2000);
+    });
+  }
+
+  function scrollToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  window.addEventListener('scroll', () => {
+    const btn = document.querySelector('.scroll-to-top');
+    if (btn) btn.classList.toggle('visible', window.scrollY > 300);
+  });
+
   (function () {
     const video = document.getElementById('teaser');
     if (!video) return;

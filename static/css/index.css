@@ -308,7 +308,7 @@ body {
   transform: translateX(-50%);
   width: 60px;
   height: 3px;
-  background: var(--gradient-accent);
+  background: linear-gradient(90deg, #f59e0b, #d97706);
   border-radius: 2px;
 }
 
@@ -740,27 +740,24 @@ a:focus {
   }
 }
 
-.hero--gradient {
-  background: linear-gradient(
-    180deg,
-    #f8fafc 0%,
-    #f1f5f9 100%
-  ); /* soft gray gradient */
-  border-bottom: 1px solid var(--border-color);
-}
-
-/* Improve text visibility for authors */
-.publication-authors {
-  color: #374151 !important; /* Tailwind gray-700, much clearer */
+/* Publication authors inside the dark hero */
+.hero--gradient .publication-authors {
+  color: rgba(255, 255, 255, 0.9) !important;
   font-weight: 500 !important;
 }
 
-.publication-authors a {
-  color: #1f2937 !important; /* darker, high contrast */
+.hero--gradient .publication-authors a {
+  color: #c7d2fe !important;
   font-weight: 600 !important;
 }
 
-.publication-authors a:hover {
-  color: var(--primary-color) !important;
+.hero--gradient .publication-authors a:hover {
+  color: #ffffff !important;
+}
+
+/* Venue line (e.g. Cornell University, CVPR 2026) */
+.hero--gradient .is-size-5 .author-block,
+.hero--gradient .is-size-4 .author-block {
+  color: rgba(255, 255, 255, 0.85);
 }
 
