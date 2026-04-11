@@ -7,21 +7,20 @@
   }
 
   .hero--gradient {
-    background:
-      radial-gradient(ellipse 900px 420px at 50% -5%, rgba(251, 191, 36, 0.13), transparent 62%),
-      linear-gradient(160deg, #1e1a2e 0%, #141020 100%);
-    color: #fff;
+    background: linear-gradient(160deg, #fdfaf5 0%, #fef3e2 100%);
+    border-bottom: 1px solid rgba(180, 83, 9, 0.12);
+    color: #1c1008;
   }
 
   .hero--gradient .title {
-    color: #fff;
+    color: #1c1008;
   }
 
   .brand-accent {
     font-family: 'Playfair Display', Georgia, serif;
     font-style: italic;
     font-weight: 800;
-    background: linear-gradient(120deg, #fde68a 0%, #fbbf24 35%, #ffffff 70%, #fef9c3 100%);
+    background: linear-gradient(120deg, #92400e 0%, #b45309 40%, #d97706 100%);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
@@ -123,27 +122,27 @@
   }
 
   :root {
-    --link-hero: #c7d2fe;
-    /* soft indigo */
-    --link-hero-hover: #ffffff;
-    /* white on hover */
+    --link-hero: #b45309;
+    /* warm amber */
+    --link-hero-hover: #92400e;
+    /* dark amber on hover */
   }
 
   /* Title/author hero section links */
   .hero--gradient a {
     color: var(--link-hero);
     text-decoration: none;
-    border-bottom: 1px dotted rgba(255, 255, 255, .35);
+    border-bottom: 1px dotted rgba(180, 83, 9, .4);
   }
 
   .hero--gradient a:hover {
     color: var(--link-hero-hover);
-    border-bottom-color: rgba(255, 255, 255, .75);
+    border-bottom-color: rgba(146, 64, 14, .8);
   }
 
   /* Ensure author underline uses the same style */
   .author-list .author a {
-    border-bottom-color: rgba(255, 255, 255, .35);
+    border-bottom-color: rgba(180, 83, 9, .4);
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -385,14 +384,14 @@
                 class="nowrap">Shadow-Drawing</span> Compositional Art</span>
             </h1>
             <div style="margin-top: 1.25rem;">
-              <p style="font-size: 1.15rem; font-weight: 500; color: rgba(255,255,255,0.88); line-height: 1.6;">
+              <p style="font-size: 1.15rem; font-weight: 500; color: rgba(28,16,8,0.82); line-height: 1.6;">
                 <a href="https://red-fairy.github.io/" target="_blank">Rundong Luo</a>
                 <span style="opacity:0.35; margin: 0 0.45em;">&middot;</span>
                 <a href="https://www.cs.cornell.edu/~snavely/" target="_blank">Noah Snavely</a>
                 <span style="opacity:0.35; margin: 0 0.45em;">&middot;</span>
                 <a href="https://www.cs.cornell.edu/~weichiu/" target="_blank">Wei-Chiu Ma</a>
               </p>
-              <p style="margin-top: 0.5rem; font-size: 0.78rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.4);">
+              <p style="margin-top: 0.5rem; font-size: 0.78rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(28,16,8,0.42);">
                 Cornell University &ensp;&middot;&ensp; CVPR 2026
               </p>
             </div>
@@ -436,14 +435,14 @@
 
             <!-- Key highlights bar -->
             <div style="display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap; margin-top: 1.5rem; margin-bottom: 0.25rem;">
-              <span style="display: inline-flex; align-items: center; gap: 0.4rem; background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.22); border-radius: 9999px; padding: 0.35rem 0.9rem; font-size: 0.875rem; font-weight: 600; color: rgba(255,255,255,0.95); backdrop-filter: blur(8px);">
-                <i class="fas fa-trophy" style="color: #fbbf24;"></i>&nbsp;CVPR 2026
+              <span style="display: inline-flex; align-items: center; gap: 0.4rem; background: rgba(180,83,9,0.07); border: 1px solid rgba(180,83,9,0.2); border-radius: 9999px; padding: 0.35rem 0.9rem; font-size: 0.875rem; font-weight: 600; color: rgba(28,16,8,0.78);">
+                <i class="fas fa-trophy" style="color: #d97706;"></i>&nbsp;CVPR 2026
               </span>
-              <span style="display: inline-flex; align-items: center; gap: 0.4rem; background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.22); border-radius: 9999px; padding: 0.35rem 0.9rem; font-size: 0.875rem; font-weight: 600; color: rgba(255,255,255,0.95); backdrop-filter: blur(8px);">
-                <i class="fas fa-university" style="color: #93c5fd;"></i>&nbsp;Cornell University
+              <span style="display: inline-flex; align-items: center; gap: 0.4rem; background: rgba(180,83,9,0.07); border: 1px solid rgba(180,83,9,0.2); border-radius: 9999px; padding: 0.35rem 0.9rem; font-size: 0.875rem; font-weight: 600; color: rgba(28,16,8,0.78);">
+                <i class="fas fa-university" style="color: #b45309;"></i>&nbsp;Cornell University
               </span>
-              <span style="display: inline-flex; align-items: center; gap: 0.4rem; background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.22); border-radius: 9999px; padding: 0.35rem 0.9rem; font-size: 0.875rem; font-weight: 600; color: rgba(255,255,255,0.95); backdrop-filter: blur(8px);">
-                <i class="fas fa-palette" style="color: #f9a8d4;"></i>&nbsp;Computational Art
+              <span style="display: inline-flex; align-items: center; gap: 0.4rem; background: rgba(180,83,9,0.07); border: 1px solid rgba(180,83,9,0.2); border-radius: 9999px; padding: 0.35rem 0.9rem; font-size: 0.875rem; font-weight: 600; color: rgba(28,16,8,0.78);">
+                <i class="fas fa-palette" style="color: #b45309;"></i>&nbsp;Computational Art
               </span>
             </div>
 

@@ -742,24 +742,18 @@ a:focus {
   }
 }
 
-/* Publication authors inside the dark hero */
+/* Publication authors inside the cream hero */
 .hero--gradient .publication-authors {
-  color: rgba(255, 255, 255, 0.9) !important;
+  color: rgba(28, 16, 8, 0.82) !important;
   font-weight: 500 !important;
 }
 
 .hero--gradient .publication-authors a {
-  color: #c7d2fe !important;
+  color: #b45309 !important;
   font-weight: 600 !important;
 }
 
 .hero--gradient .publication-authors a:hover {
-  color: #ffffff !important;
-}
-
-/* Venue line (e.g. Cornell University, CVPR 2026) */
-.hero--gradient .is-size-5 .author-block,
-.hero--gradient .is-size-4 .author-block {
-  color: rgba(255, 255, 255, 0.85);
+  color: #92400e !important;
 }
 
