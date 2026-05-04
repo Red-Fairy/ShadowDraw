@@ -9,3 +9,4 @@ __pycache__/*
 *.pyz
 checkpoints/
 src/*
+**/.DS_Store

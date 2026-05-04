@@ -456,7 +456,7 @@
         <figure class="video-figure">
           <div class="video-frame">
             <!-- Replace poster path if you have one -->
-            <video id="teaser" class="teaser-video" controls playsinline loop>
+            <video id="teaser" class="teaser-video" controls playsinline loop muted>
               <source src="static/videos/demo_v2.mp4" type="video/mp4" />
             </video>
           </div>
@@ -876,24 +876,19 @@
     video.pause();
     video.muted = true;
 
-    // --- When the user starts playing, unmute automatically ---
-    video.addEventListener('play', () => {
-      if (video.muted) {
-        video.muted = false;
-      }
-    });
-
-    // --- Pause when off-screen, resume when visible ---
+    // --- Pause when off-screen, resume (still muted) when visible ---
     const io = new IntersectionObserver(entries => {
       entries.forEach(e => {
         if (e.isIntersecting) {
           if (video.paused && video.currentTime > 0) {
+            video.muted = true;
             video.play().catch(() => { });
           }
         } else {
           if (!video.paused) {
             video.pause();
           }
+          video.muted = true;
         }
       });
     }, { threshold: 0.25 });
